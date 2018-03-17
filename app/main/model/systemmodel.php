@@ -370,7 +370,7 @@ class SystemModel extends AbstractMapTrackingModel {
 
         if( !$self->isActive()){
             // system becomes inactive
-            $self->alias = '';
+            //$self->alias = '';
 
             // reset "rally point" fields
             $self->rallyUpdated = 0;

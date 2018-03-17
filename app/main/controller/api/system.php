@@ -467,6 +467,14 @@ class System extends Controller\AccessController {
                 $newSystemModel = Model\BasicModel::getNew('SystemModel');
                 foreach($systemIds as $systemId){
                     if( $system = $map->getSystemById($systemId) ){
+						// Trim alias
+						$offset = strpos($system->alias, $system->name);
+						if($offset === FALSE){
+							$system->setData(array("alias"=>$system->name));
+						}
+						else{
+							 $system->setData(array("alias"=>substr($system->alias, $offset)));
+						}
                         // check whether system should be deleted OR set "inactive"
                         if( $this->checkDeleteMode($map, $system) ){
                             // delete log
